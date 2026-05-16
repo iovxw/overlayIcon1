@@ -1,3 +1,6 @@
 [submodule "ksni_overlay_icon_pixmap_bug"]
 	path = ksni_overlay_icon_pixmap_bug
 	url = https://github.com/christophehenry/ksni_overlay_icon_pixmap_bug
+[submodule "plasma-workspace"]
+	path = plasma-workspace
+	url = https://github.com/KDE/plasma-workspace
