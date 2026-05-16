@@ -1,0 +1,3 @@
+[submodule "ksni_overlay_icon_pixmap_bug"]
+	path = ksni_overlay_icon_pixmap_bug
+	url = https://github.com/christophehenry/ksni_overlay_icon_pixmap_bug
