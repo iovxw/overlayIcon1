@@ -19,6 +19,16 @@ static QString to_qstring(const fs::path &path)
     return QString::fromUtf8(path.string().c_str());
 }
 
+static void require_file(const fs::path &path)
+{
+    if (!fs::exists(path)) {
+        throw std::runtime_error(
+            "Input file does not exist: " + path.string()
+            + ". If you are using the bundled sample inputs, run `git submodule update --init --recursive` first."
+        );
+    }
+}
+
 static void require_pixmap(const QPixmap &pixmap, const fs::path &path)
 {
     if (pixmap.isNull()) {
@@ -26,7 +36,7 @@ static void require_pixmap(const QPixmap &pixmap, const fs::path &path)
     }
 }
 
-static void require_save(bool ok, const fs::path &path)
+static void require_save(const bool ok, const fs::path &path)
 {
     if (!ok) {
         throw std::runtime_error("Failed to write image: " + path.string());
@@ -64,13 +74,15 @@ int main(int argc, char **argv)
         qputenv("QT_QPA_PLATFORM", "offscreen");
         QGuiApplication app(argc, argv);
 
-        const fs::path repo_root = fs::path(__FILE__).parent_path().parent_path();
+        const fs::path repo_root = fs::path(REPO_ROOT);
         const fs::path default_icon = repo_root / "ksni_overlay_icon_pixmap_bug" / "data" / "default256.png";
         const fs::path default_overlay = repo_root / "ksni_overlay_icon_pixmap_bug" / "data" / "overlay.png";
         const fs::path output_dir = argc >= 4 ? fs::path(argv[3]) : (repo_root / "outputs");
         const fs::path icon_path = argc >= 2 ? fs::path(argv[1]) : default_icon;
         const fs::path overlay_path = argc >= 3 ? fs::path(argv[2]) : default_overlay;
 
+        require_file(icon_path);
+        require_file(overlay_path);
         const QPixmap base_pixmap(to_qstring(icon_path));
         const QPixmap overlay_pixmap(to_qstring(overlay_path));
         require_pixmap(base_pixmap, icon_path);
