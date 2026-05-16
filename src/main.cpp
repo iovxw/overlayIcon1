@@ -157,7 +157,7 @@ static Image render_overlay_icon(const Image &icon, const Image &overlay, unsign
     return rendered;
 }
 
-static Image make_contact_sheet(const std::vector<Image> &images, const std::vector<unsigned> &sizes) {
+static Image make_contact_sheet(const std::vector<Image> &images) {
     const unsigned padding = 8;
     const unsigned label_height = 0;
     unsigned total_width = padding;
@@ -179,7 +179,6 @@ static Image make_contact_sheet(const std::vector<Image> &images, const std::vec
     }
 
     unsigned cursor_x = padding;
-    (void)sizes;
     for (const auto &image : images) {
         const unsigned offset_y = padding + (max_height - image.height) / 2;
         blend_over(sheet, image, cursor_x, offset_y);
@@ -215,7 +214,7 @@ int main(int argc, char **argv) {
             std::cout << out_path << '\n';
         }
 
-        write_png(output_dir / "all.png", make_contact_sheet(outputs, icon_sizes));
+        write_png(output_dir / "all.png", make_contact_sheet(outputs));
         std::cout << (output_dir / "all.png") << '\n';
         return 0;
     } catch (const std::exception &error) {
