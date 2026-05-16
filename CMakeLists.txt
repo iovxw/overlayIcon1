@@ -38,6 +38,10 @@ target_include_directories(overlay_icon_repro PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
+target_compile_definitions(overlay_icon_repro PRIVATE
+    REPO_ROOT="${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
 target_link_libraries(overlay_icon_repro PRIVATE
     Qt5::Core
     Qt5::Gui
