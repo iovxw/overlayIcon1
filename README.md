@@ -1,5 +1,7 @@
 # overlayIcon1
 
+![](outputs/all.png)
+
 Minimal C++ reproduction for the KDE `StatusNotifierItemSource::overlayIcon()` rendering path.
 
 ## Source of the overlay implementation
