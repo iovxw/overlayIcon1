@@ -6,26 +6,26 @@
 
 默认读取子模块中的两张图片：
 
-- `/home/runner/work/overlayIcon1/overlayIcon1/ksni_overlay_icon_pixmap_bug/data/default256.png`
-- `/home/runner/work/overlayIcon1/overlayIcon1/ksni_overlay_icon_pixmap_bug/data/overlay.png`
+- `./ksni_overlay_icon_pixmap_bug/data/default256.png`
+- `./ksni_overlay_icon_pixmap_bug/data/overlay.png`
 
 ## 构建
 
 ```bash
-cmake -S /home/runner/work/overlayIcon1/overlayIcon1 -B /home/runner/work/overlayIcon1/overlayIcon1/build
-cmake --build /home/runner/work/overlayIcon1/overlayIcon1/build
+cmake -S . -B build
+cmake --build build
 ```
 
 ## 运行
 
 ```bash
-/home/runner/work/overlayIcon1/overlayIcon1/build/overlay_icon_repro
+./build/overlay_icon_repro
 ```
 
 也可以显式传入：
 
 ```bash
-/home/runner/work/overlayIcon1/overlayIcon1/build/overlay_icon_repro ICON_PNG OVERLAY_PNG OUTPUT_DIR
+./build/overlay_icon_repro ICON_PNG OVERLAY_PNG OUTPUT_DIR
 ```
 
 ## 输出
@@ -38,4 +38,4 @@ cmake --build /home/runner/work/overlayIcon1/overlayIcon1/build
 - `48x48.png`
 - `all.png`
 
-默认输出目录：`/home/runner/work/overlayIcon1/overlayIcon1/outputs`
+默认输出目录：`./outputs`
